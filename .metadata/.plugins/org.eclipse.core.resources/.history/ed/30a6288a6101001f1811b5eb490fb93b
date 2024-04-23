@@ -1,0 +1,26 @@
+package com.kh.thenolja.member.model.vo;
+
+import java.sql.Date;
+
+public class Member {
+	private int memNo;
+	
+	private String memName;
+	private String memPhone;
+	private String memId;
+	private String memPwd;
+	private String nickname;
+	private String email;
+	
+	
+	private String bornDate; // 생년월일
+	private Date joinDate; // 가입일
+	
+	private String memStatus; //비회원 / 회원 표시
+	private String deleteYn; // 탈퇴 회원 표시
+	
+	
+	
+	
+	
+}

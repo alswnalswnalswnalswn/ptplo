@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<insert id="insertMember" parameterType="com.kh.hw.member.model.vo.Member">
+		INSERT
+		   ALL
+		  INTO
+		       TB_NONMEM
+		VALUES
+		       (
+		       SEQ_MNO.NEXTVAL,
+		       #{memName}, <!-- 이름 -->
+		       #{memPhone}, <!-- 번호 -->
+		       DEFAULT <!-- 회원 / 비회원 -->
+		       )
+		  INTO
+		       TB_MEMBER
+		VALUES
+		       (
+		       SEQ_MNO.CURRVAL,
+		       #{memId}, <!-- 아이디 -->
+		       #{memPwd}, <!-- 비밀번호 -->
+		       #{nickname}, <!-- 닉네임 -->
+		       #{bornDate}, <!-- 생년월일 -->
+		       #{email}, <!-- 이메일 -->
+		       DEFAULT, <!-- 탈퇴여부 -->
+		       SYSDATE <!-- 가입일 -->
+		       )
+		SELECT
+		       *
+		  FROM
+		       DUAL
+	</insert>
+	
+	<resultMap id="memResultSet" type="member">
+		<result column="MEM_NO" property="memNo" />
+		<result column="MEM_ID" property="memId" />
+		<result column="MEM_PWD" property="memPwd" />
+		<result column="MEM_NAME" property="memName" />
+		<result column="MEM_PHONE" property="memPhone" />
+		<result column="NICKNAME" property="nickname" />
+		<result column="BORN_DATE" property="bornDate" />
+		<result column="EMAIL" property="email" />
+		<result column="DELETE_YN" property="joinDate" />
+		<result column="JOIN_DATE" property="deleteYn" />
+	</resultMap>
+	
+	<select id="login" parameterType="com.kh.hw.member.model.vo.Member"
+			resultType="com.kh.hw.member.model.vo.Member">
+		SELECT
+				MEM_NO,
+				MEM_ID,
+				MEM_PWD,
+				MEM_NAME,
+				MEM_PHONE,
+				NICKNAME,
+				BORN_DATE,
+				EMAIL,
+				DELETE_YN,
+				JOIN_DATE
+		  FROM
+		  		TB_MEMBER
+		  JOIN
+		  		TB_NONMEM USING (MEM_NO)		
+		 WHERE
+		   		MEM_ID = #{memId}
+		   AND
+		   		MEM_PWD = #{memPwd}
+		   AND
+		 		DELETE_YN = 'Y'
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>
