@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<div id="wrap">
+		<div id="banner">
+		</div>
+		<div class="mainPage-title-div">
+			<h3>요즘 인기있는 숙소</h3>
+		</div>
+		 <div class="swiper mySwiper">
+		    <div class="swiper-wrapper populars">
+		    </div>
+		    
+	    	<div class="swiper-pagination"></div>
+		    <div class="swiper-button-next"></div>
+		    <div class="swiper-button-prev"></div>
+		    <div class="swiper-pagination"></div>
+	  	</div>
+  	
+		<div class="mainPage-title-div">
+			<h3>지역별 추천숙소</h3>
+		</div>	
+		 <div class="swiper mySwiper-2">
+		    <div class="swiper-wrapper recommands">
+		    </div>
+	  	</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

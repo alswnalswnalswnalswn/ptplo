@@ -1,0 +1,39 @@
+package com.kh.hw.member.model.service;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.kh.hw.common.template.Template;
+import com.kh.hw.member.model.dao.MemberDao;
+import com.kh.hw.member.model.vo.Member;
+
+public class MemberServiceImpl implements MemberService {
+	
+	private MemberDao memberDao = new MemberDao();
+	
+	public int insertMember(Member member) {
+
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		int result = new MemberDao().insertMember(sqlSession, member);
+		
+		if(result > 0) sqlSession.commit();
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+
+	@Override
+	public Member login(Member member) {
+		
+		SqlSession sqlSession = Template.getSqlSession();
+		
+		Member loginMember = memberDao.login(sqlSession, member);
+		
+		sqlSession.close();
+		
+		return loginMember;
+	}
+	
+}

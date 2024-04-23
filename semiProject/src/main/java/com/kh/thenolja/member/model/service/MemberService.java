@@ -1,0 +1,6 @@
+package com.kh.thenolja.member.model.service;
+
+public interface MemberService {
+	
+
+}
