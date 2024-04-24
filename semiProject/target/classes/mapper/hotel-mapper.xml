@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotelMapper">
+
+	<resultMap id="hotelResultSet" type="hotel">
+		<result column="HOTEL_NO" property="hotelNo" />
+		<result column="HOTEL_NAME" property="hotelName" />
+		<result column="HOTEL_PHONE" property="hotelPhone" />
+		<result column="HOTEL_LOCATION" property="hotelLocation" />
+		<result column="HOTEL_ADDRESS" property="hotelAddress" />
+		<result column="HOTEL_CATEGORY" property="hotelCategory" />
+		<result column="HOTEL_PATH" property="hotelPath" />
+		<result column="HOTEL_INTRO" property="hotelIntro" />
+		<result column="HOTEL_YN" property="hotelYN" />
+		<result column="HOST_NAME" property="hostName" />
+	</resultMap>
+
+
+
+
+	<select id="selectHotel" parameterType="hotel" resultMap="hotelResultSet">
+		SELECT
+			    HOTEL_NO,	
+		        HOTEL_NAME,
+		        HOTEL_PHONE,
+		        HOTEL_CATEGORY,
+		        HOTEL_INTRO,
+		        HOTEL_LOCATION, 
+		        HOTEL_ADDRESS,
+		        HOTEL_PATH,
+		        HOST_NAME
+    	  FROM 
+    			TB_HOTEL  
+         WHERE 
+         		HOTEL_YN = 'Y'
+           AND 
+           		HOTEL_NO = #{hotelNo}
+	</select>
+
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>  

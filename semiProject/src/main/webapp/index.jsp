@@ -105,6 +105,9 @@
 		</div>
 		<div class="mainPage-title-div">
 			<h3>요즘 인기있는 숙소</h3>
+			<a href="select.hotel?hotelNo=30">
+			<button>호텔</button>
+			</a>
 		</div>
 		 <div class="swiper mySwiper">
 		    <div class="swiper-wrapper populars">
