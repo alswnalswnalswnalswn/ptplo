@@ -142,7 +142,7 @@
 	</div>
 		
 	<script>
-	/*
+	
 	function reviewAjax(value){
 		$('#review-ul').empty();
 		$('.paging-area').empty();		
