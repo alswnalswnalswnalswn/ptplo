@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="jdk.nashorn.internal.objects.annotations.Getter"/>
+<fullyQualifiedTypeName name="jdk.nashorn.internal.objects.annotations.Setter"/>
+<fullyQualifiedTypeName name="lombok.Getter"/>
+<fullyQualifiedTypeName name="lombok.Setter"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.member.model.service.MemberService"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.member.model.dao.MemberRepository"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.member.model.vo.Member"/>
+</qualifiedTypeNameHistroy>
