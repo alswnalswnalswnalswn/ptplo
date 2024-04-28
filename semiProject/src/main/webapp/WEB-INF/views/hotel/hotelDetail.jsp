@@ -295,6 +295,7 @@
 	    }
 		// 클릭할 시 insert, delete 끝
 		</script>
+		
 	</c:if>
 </body>
 </html>
