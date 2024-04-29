@@ -8,7 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="views/hotel/css/hotelDetail.css" >
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
@@ -140,7 +139,7 @@
 		<div class="paging-area" align="center">
 		</div>
 	</div>
-		
+	<!-- 	
 	<script>
 	
 	function reviewAjax(value){
@@ -295,7 +294,7 @@
 	    }
 		// 클릭할 시 insert, delete 끝
 		</script>
-		
-	</c:if>
+		 -->
+		 </c:if>
 </body>
 </html>

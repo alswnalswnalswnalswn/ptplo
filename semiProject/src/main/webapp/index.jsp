@@ -124,13 +124,45 @@
 		</div>	
 		 <div class="swiper mySwiper-2">
 		    <div class="swiper-wrapper recommands">
+		    
 		    </div>
 	  	</div>
 	</div>
 	
 	
 	
+	<script>
+		$.ajax({
+			url:"locRecomData.jqAjax",
+			type: 'get',
+			success: function(result){
+				let hotels = '';
+				for(let i in result){
+					hotels += '<div class="swiper-slide">'
+							+'<div class="card cards" id="'+ result[i].hotelNo +'"style="width:250px; height:180px; cursor: pointer; white-space:nowrap;">'
+							 	+'<img class="card-img-top" src="'+ result[i].hotelPath +'" alt="Card image">'
+							    +'<div class="card-body">'
+							    +'<h5 class="card-title">'+ result[i].hotelName +'</h5>'
+							    +'<p class="card-text">'+ result[i].hotelLocation +'</p>'							   
+							    +'</div>'
+							+'</div>'
+						+'</div>';	
+				}
+				$('.recommands').html(hotels);
+			},
+			async : false,
+			error: function(){
+				
+			},
+		});
+		
+		$('.cards').click(function(e){
+			location.href = 'select.hotel?hotelNo='+ $(this).attr('id');
+		});	
+
 	
+	
+	</script>
 	
 	
 	

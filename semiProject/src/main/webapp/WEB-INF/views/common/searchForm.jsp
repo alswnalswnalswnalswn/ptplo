@@ -8,15 +8,13 @@
 <meta charset="UTF-8">
 <title>searchForm</title>
 
-<link rel="stylesheet" href="views/hotel/css/searchForm.css" >
-
 </head>
 <body>
 
 <jsp:include page="../common/menubar.jsp" />
 
 <div id="content-1">
-	<form id="select-form" action="${ path }/searchList.hotels" method="get">
+	<form id="select-form" action="searchList.hotels" method="get">
 		<c:choose>
 		<c:when test="${ searchData ne null }" >
 			<div style="display: inline-block;">
@@ -44,7 +42,7 @@
 		<input class="btn btn btn-info" id="search" type="submit" value="검색">
 	</form>
 </div>
-
+<!-- 
 <script>
 const toDay = new Date();
 	let startDate;
@@ -103,6 +101,6 @@ const toDay = new Date();
 	
 	
 </script>
-    
+     -->
 </body>
 </html>

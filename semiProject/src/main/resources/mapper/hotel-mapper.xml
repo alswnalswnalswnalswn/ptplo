@@ -39,7 +39,43 @@
            		HOTEL_NO = #{hotelNo}
 	</select>
 
-	
+		<select id="selectRecomData" resultMap="hotelResultSet">
+		SELECT * 
+        FROM(  
+             SELECT A.*,
+               ROWNUM rowcnt
+           FROM(    
+             SELECT * 
+                  FROM (
+                        SELECT
+                             HOTEL_LOCATION,
+                             HOTEL_NAME,
+                             TB_HOTEL.HOTEL_NO,
+                             HOTEL_CATEGORY,
+                             HOTEL_PATH,
+                             COUNT(TB_RESERVATION.ROOM_NO),
+                            ROW_NUMBER()OVER (PARTITION BY HOTEL_LOCATION ORDER BY COUNT(TB_RESERVATION.ROOM_NO)DESC) AS RNUM
+                         FROM
+                             TB_RESERVATION
+                         JOIN TB_ROOM
+                           ON TB_RESERVATION.ROOM_NO = TB_ROOM.ROOM_NO
+                         JOIN TB_HOTEL
+                           ON TB_ROOM.HOTEL_NO = TB_HOTEL.HOTEL_NO
+                        WHERE
+                             HOTEL_YN = 'Y'
+                          AND
+                             ROOM_YN = 'Y'
+                        GROUP
+                           BY 
+                             TB_HOTEL.HOTEL_NO,
+                             HOTEL_LOCATION,
+                             HOTEL_NAME,
+                             HOTEL_CATEGORY,
+                             HOTEL_PATH,
+                             TB_RESERVATION.ROOM_NO)
+                WHERE RNUM = 1) A)
+    		WHERE rowcnt BETWEEN 1 AND 4
+	</select>
 	
 	
 	
