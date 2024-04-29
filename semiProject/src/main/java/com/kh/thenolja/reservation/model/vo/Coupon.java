@@ -16,6 +16,7 @@ public class Coupon {
 	private String couponYN;
 	private String couponCode;
 	private int couponPercent;
+	private int reMemNo;
 	
 	
 	

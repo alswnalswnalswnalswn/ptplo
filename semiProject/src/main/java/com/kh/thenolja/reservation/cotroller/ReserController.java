@@ -40,7 +40,7 @@ public class ReserController {
 	@ResponseBody
 	@GetMapping(value="cupon.jqAjax", produces="application/json; charset=UTF-8")
 	public String selectCoupon(int memberNo) {
-		// System.out.println(memberNo);
+		
 		List<Coupon> coupon = reserService.selectCoupon(memberNo);
 		return new Gson().toJson(coupon);
 	}
