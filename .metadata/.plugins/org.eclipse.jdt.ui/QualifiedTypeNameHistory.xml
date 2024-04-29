@@ -8,4 +8,11 @@
 <fullyQualifiedTypeName name="lombok.Getter"/>
 <fullyQualifiedTypeName name="lombok.Setter"/>
 <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.hotel.model.vo.Comment"/>
+<fullyQualifiedTypeName name="thenolja.tb_reservation.model.vo.Reservation"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.common.model.vo.PageInfo"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.hotel.model.vo.SearchData"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.hotel.model.vo.SearchOptions"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.reservation.model.vo.ReserInfo"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
