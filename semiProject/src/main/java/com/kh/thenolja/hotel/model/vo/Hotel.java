@@ -1,5 +1,7 @@
 package com.kh.thenolja.hotel.model.vo;
 
+import java.sql.Date;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +20,15 @@ public class Hotel {
 	private String hotelIntro;
 	private String hotelYN;
 	private String hostName;
+	private String hotelCate;
+	private int reserNo;
+	private String reviewScore;
+	private String reserName;
+	private String reviewContent;
+	private Date createDate;
+	private int countReviews;
+	private String[] serList;
+	
 	
 	
 }

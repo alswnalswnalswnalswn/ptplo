@@ -3,6 +3,7 @@ package com.kh.thenolja.member.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,27 +23,27 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@PostMapping("login.member")
-	public ModelAndView login(Member member, HttpSession session, ModelAndView mv) {
-		
-		Member loginUser = memberService.login(member);
-		
-		if(loginUser != null) {
-			session.setAttribute("loginUser", memberService.login(member));
-			mv.setViewName("redirect:/");
-		} else {
-			mv.addObject("errorMsg", "로그인 실패~~");
-			mv.setViewName("common/errorPage");
-		}
-		return  mv;
-	}
+	   // 로그인 기능
+	   @RequestMapping("login.member")
+	   public ModelAndView login(Member member, HttpSession session, ModelAndView mv) { 
+	      
+	      Member loginUser = memberService.login(member);
+	      
+	      if(loginUser != null) {
+	         session.setAttribute("loginUser", loginUser);
+	         mv.setViewName("redirect:/");
+	      } else {
+	         mv.addObject("errorMsg", "로그인 실패");
+	         mv.setViewName("common/errorPage");
+	      }
+	      return mv;
+	   }
 	
 	
 	@RequestMapping("memberJoin")
 	public String join() {
 		return "member/memberJoin";
 	}
-	
 	
 	
 	

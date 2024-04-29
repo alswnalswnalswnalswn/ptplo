@@ -7,6 +7,7 @@ import lombok.ToString;
 
 @Getter @Setter @ToString @NoArgsConstructor
 public class SearchOptions {
+	
 	private int maxPeople;
 	private String location;
 	private String startDate;

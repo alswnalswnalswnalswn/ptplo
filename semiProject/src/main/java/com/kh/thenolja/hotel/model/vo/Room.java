@@ -17,6 +17,8 @@ public class Room {
 	private String checkOutTime;
 	private int roomImgNo;
 	private String roomImgPath;
+	private String roomYN;
+	private int roomImg;
 	
 	
 }

@@ -261,7 +261,6 @@ div {
 		</script>
 	</c:if>
 	
-	<c:set var="path" value="${ pageContext.request.contextPath }" scope="session" />
 	<c:set var="loginUser" value="${ sessionScope.loginUser }" scope="session" />
 	
 	<c:choose>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserMapper">
+
+	<resultMap id="couponResultSet" type="coupon">
+		<result column="COUPON_NO" property="couponNo" />
+		<result column="COUPON_CONTENT" property="couponContent" />
+		<result column="COUPON_DATE" property="couponDate" />
+		<result column="COUPON_YN" property="couponYN" />
+		<result column="COUPON_CODE" property="couponCode" />
+		<result column="COUPON_PERCENT" property="couponPercent" /> 
+	</resultMap>
+	
+	<resultMap id="reserResultSet" type="reser">
+		<result column="RESER_NO" property="reserNo" />
+		<result column="RESER_DATE" property="reserDate" />
+		<result column="RESER_NAME" property="name" />
+		<result column="RESER_PHONE" property="phone" />
+		<result column="BICYCLE" property="bicycle" />
+		<result column="CANCEL_YN" property="cancelYN" /> 
+		<result column="CHECKIN_TIME" property="checkIn" /> 
+		<result column="CHECKOUT_TIME" property="checkOut" /> 
+		<result column="PEOPLE" property="people" /> 
+		<result column="ROOM_NO" property="roomNo" /> 
+		<result column="RE_MEM_NO" property="reMemNo" /> 
+		<result column="PAYMENT" property="payment" /> 
+		<result column="PAYMENT_PRICE" property="paymentPrice" /> 
+	</resultMap>
+	
+	<select id="selectRoom">
+ 		SELECT
+		        ROOM_NO, 
+		        HOTEL_NO,
+		        ROOM_NAME,
+		        CHECKIN_TIME,
+		        CHECKOUT_TIME,
+		        ROOM_NUM,
+		        ROOM_PRICE,
+		        MAX_PEOPLE
+	      FROM 
+	        	TB_ROOM
+	     WHERE
+	     		HOTEL_NO = #{hotelNo}
+	</select>
+	
+	<select id="selectCouponList" resultMap="couponResultSet">
+		SELECT
+				TB_MY_COUPON.COUPON_NO COUPON_NO,
+		        COUPON_CONTENT,
+		        COUPON_DATE,
+		        COUPON_CODE,
+		        COUPON_PERCENT
+		  FROM
+		        TB_MY_COUPON
+		  JOIN
+		        TB_COUPON ON(TB_MY_COUPON.COUPON_NO = TB_COUPON.COUPON_NO)
+		  JOIN
+		        TB_MEMBER ON(MEM_NO = CO_MEM_NO)
+	</select>
+	
+	<select id="selectCoupon" resultMap="couponResultSet">
+		SELECT
+				TB_MY_COUPON.COUPON_NO COUPON_NO,
+		        COUPON_CONTENT,
+		        COUPON_DATE,
+		        COUPON_CODE,
+		        COUPON_PERCENT
+		  FROM
+		        TB_MY_COUPON
+		  JOIN
+		        TB_COUPON ON(TB_MY_COUPON.COUPON_NO = TB_COUPON.COUPON_NO)
+		 WHERE
+		 		TB_MY_COUPON.CO_MEM_NO = 6
+	</select>
+	
+	
+	<insert id="insertReser">
+		INSERT
+		  INTO 
+		  		TB_RESERVATION
+		VALUES
+		 		(
+		 		SEQ_RESERVATION.NEXTVAL,
+		 		SYSDATE,
+		 		#{name},
+		 		#{phone},
+		 		#{bicycle},
+		 		DEFAULT,
+		 		#{checkIn},
+		 		#{checkOut},
+		 		#{people},
+		 		#{roomNo},
+		 		#{reMemNo},
+		 		'계좌이체',
+		 		#{paymentPrice}
+				)
+	</insert>
+	
+	<select id="selectReservation">
+		SELECT 
+		        RESER_NO,
+		        RESER_DATE,
+		        RESER_NAME,
+		        RESER_PHONE,
+		        BICYCLE,
+		        TO_CHAR(TB_RESERVATION.CHECKIN_TIME , 'YYYY/MM/DD') AS CHECKIN_DATE, 
+    		    TO_CHAR(TB_RESERVATION.CHECKOUT_TIME , 'YYYY/MM/DD') AS CHECKOUT_DATE, 
+		        PEOPLE,
+		        ROOM_NO,
+		        RE_MEM_NO,
+		        PAYMENT,
+		        PAYMENT_PRICE
+		  FROM
+		        TB_RESERVATION
+		  JOIN
+		        TB_ROOM USING(ROOM_NO)	
+		  JOIN
+		        TB_HOTEL USING (HOTEL_NO)
+		 WHERE
+		   		RESER_NO = #{reserNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>  

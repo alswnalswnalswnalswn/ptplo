@@ -42,7 +42,7 @@
 		<input class="btn btn btn-info" id="search" type="submit" value="검색">
 	</form>
 </div>
-<!-- 
+
 <script>
 const toDay = new Date();
 	let startDate;
@@ -71,9 +71,8 @@ const toDay = new Date();
 		    	startDate = start.format('YYYY-MM-DD');
 		    	endDate = end.format('YYYY-MM-DD');
 			    $('#date').text(startDate+'/'+endDate);
-			});
-		
-	    // 지역 가져오기
+		});
+	
 	    $.ajax({
 	    	url: "searchLocation.jqAjax",
 	    	type: 'get',
@@ -100,7 +99,7 @@ const toDay = new Date();
 	});
 	
 	
+    
 </script>
-     -->
 </body>
 </html>

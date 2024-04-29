@@ -12,12 +12,16 @@
 	<typeAliases>
 		<typeAlias type="com.kh.thenolja.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.thenolja.hotel.model.vo.Hotel" alias="hotel" />
+		<typeAlias type="com.kh.thenolja.hotel.model.vo.Room" alias="room" />
+		<typeAlias type="com.kh.thenolja.reservation.model.vo.Reservation" alias="reser" />
+		<typeAlias type="com.kh.thenolja.reservation.model.vo.Coupon" alias="coupon" />
 	</typeAliases>
 		
 		
 	<mappers>
 		<mapper resource="/mapper/member-mapper.xml" />
 		<mapper resource="/mapper/hotel-mapper.xml" />
+		<mapper resource="/mapper/reser-mapper.xml" />
 	</mappers>
 
 </configuration>

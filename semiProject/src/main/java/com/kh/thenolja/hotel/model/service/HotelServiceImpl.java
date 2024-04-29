@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.kh.thenolja.hotel.model.dao.HotelRepository;
 import com.kh.thenolja.hotel.model.vo.Hotel;
 import com.kh.thenolja.hotel.model.vo.HotelCard;
+import com.kh.thenolja.hotel.model.vo.Room;
+import com.kh.thenolja.hotel.model.vo.SearchOptions;
 
 @Service
 public class HotelServiceImpl implements HotelService{
@@ -27,6 +29,21 @@ public class HotelServiceImpl implements HotelService{
 	@Override
 	public List<HotelCard> selectRecomData() {
 		return hotelRepository.selectRecomData(sqlSession);
+	}
+
+	@Override
+	public List<String> selectLocation() {
+		return hotelRepository.selectLocation(sqlSession);
+	}
+
+	@Override
+	public Room selectRoom(int hotelNo) {
+		return hotelRepository.selectRoom(sqlSession, hotelNo);
+	}
+
+	@Override
+	public List<HotelCard> searchList(SearchOptions so) {
+		return hotelRepository.searchList(sqlSession, so);
 	}
 
 }

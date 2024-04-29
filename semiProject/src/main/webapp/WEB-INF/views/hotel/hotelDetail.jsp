@@ -14,8 +14,56 @@
 <body>
 	<jsp:include page="../common/searchForm.jsp"/>
 	
-	<div id="detail-wrap">
+	<div id="detail-wrap" style="magin:auto;">
+		<c:if test="${ loginUser ne null }"> 
+			<div id="favorite">
+				<label for="checkbox" id="label"></label>
+			</div>
+		</c:if>
+	
+	
+	
+	<c:choose>
+		<c:when test="${ hotel ne null }">
+			<div id="detail-content-title">
+				<h3>
+					<span>${hotel.hotelName}</span> <span>호텔</span>
+				</h3>
+			</div>
+			<img src="${ hotel.hotelPath }" alt="pic">
+			<span>★</span>
+			<span>${hotel.countReviews} 개의 리뷰</span>
+			<span><a href="#reviews">리뷰조회</a></span>
+			<span>${ hotel.hotelCate }</span>
+			
+			<div id="detail-content-rooms">
+				<h3 style="text-align: center; margin-top: 5px;">객실</h3>
+					<div class="content-rooms-card">
+						<img src="${ room.roomImg }">
+						<div class="room-infos">
+							<h4>${ room.roomName }</h4>
+							<p>입실시간 : ${room.checkInTime }: 00</p>
+							<p>퇴실시간 : ${room.checkOutTime } : 00</p>
+							<p>가격 : ${room.roomPrice } 원</p>
+						</div>
+						<div>
+							<p>쿠폰적용가능</p>
+							<a href="insertReservation?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&startDate=2024-04-29&endDate=2024-04-31&location=강릉&maxPeople=2&memNo=${loginUser.memNo}">
+							<button class="btn btn-sm btn-info">객실 예약</button></a>
+							<a href="/nonInsertReservation?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&daterange=${ dateRangeForm }&location=${ hotelDetail.hotelLocation }&people=${ searchData.maxPeople }">
+							<button class="btn btn-sm btn-primary" >비회원예약하기</button></a>
+						</div>
+					</div>			
+						
+				</div>
+		</c:when>
+		<c:otherwise>
 		
+			</c:otherwise>
+	</c:choose>	
+	
+	</div>
+		<!--
 		<c:choose>
 			<c:when test="${ hotelDetail ne null }">
 			<div id="detail-content">
@@ -46,13 +94,11 @@
 						</c:forEach>
 					</ul>
 					
-					<!-- 동혁 시작-->
 					<c:if test="${ loginUser ne null }"> 
 						<div id="favorite">
 							<label for="checkbox" id="label"></label>
 						</div>
 					</c:if>
-					<!-- 동혁 끝 -->
 				</div>
 				
 				<div id="detail-content-rooms">
@@ -139,6 +185,7 @@
 		<div class="paging-area" align="center">
 		</div>
 	</div>
+	 -->
 	<!-- 	
 	<script>
 	
