@@ -1,7 +1,5 @@
 package com.kh.thenolja.reservation.cotroller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class ReserController {
 	@Autowired
 	private ReserService reserService;
 	
-	@ResponseBody
+	
 	@RequestMapping("insertReservation")
 	public String insertReservation(String startDate, String endDate, String location, 
 									int maxPeople, HttpSession session) {
@@ -44,7 +42,7 @@ public class ReserController {
 		List<Coupon> coupon = reserService.selectCoupon(memberNo);
 		return new Gson().toJson(coupon);
 	}
-	@ResponseBody
+	
 	@GetMapping("insert.reser")
 	public ModelAndView insertReser(Reservation reser, ModelAndView mv, HttpSession session) {
 		
