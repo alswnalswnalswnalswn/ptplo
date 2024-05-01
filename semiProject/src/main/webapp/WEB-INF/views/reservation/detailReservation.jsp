@@ -217,7 +217,7 @@
                         <tr>
                             <td width="170x">예약금액 : ${ room.roomPrice }</td>
                             <td><img src="https://cdn-icons-png.flaticon.com/512/561/561179.png" alt="" width="20px"></td>
-                            <td width="170x">할인 금액 : ${ Math.round((coupon.getCouponPercent()* 0.01) * room.roomPrice)}원</td>
+                            <td width="170x">할인 금액 : ${ room.roomPrice - reser.paymentPrice }원</td>
                             <td><img src="https://cdn-icons-png.flaticon.com/512/6492/6492285.png" alt="" width="25px"></td>
                             <td>결제금액 : ${ reser.paymentPrice }
                         </tr>
@@ -239,7 +239,7 @@
                     </tr>
                     <tr>
                         <td>입금자명</td> 
-                        <td>${ reser.name }</td>
+                        <td>${ reser.reserName }</td>
                     </tr>
                     </table>
                 </div>
@@ -250,9 +250,9 @@
                     <table>
                     <tr>
                             <td width="80px">이름</td> 
-                            <td>${ reser.name }</td>
+                            <td>${ reser.reserName }</td>
                             <td width="80px">전화번호</td> 
-                            <td>${ reser.phone }</td>
+                            <td>${ reser.reserPhone }</td>
                         </tr>
                         <tr>
                             <td>차량</td> 
@@ -265,7 +265,7 @@
 
     </div>
     <div id="my_btn">
-	    <a href="${path }/myReser.list?reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&reserNo=${ reser.reserNo }">
+	    <a href="myReser.list?reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&reserNo=${ reser.reserNo }">
 	    	<button class="btn btn-outline-secondary" style="width:200px; height:50px;">내 예약 내역 조회</button>
 	    </a>
     </div>

@@ -10,18 +10,21 @@
 		<result column="COUPON_DATE" property="couponDate" />
 		<result column="COUPON_YN" property="couponYN" />
 		<result column="COUPON_CODE" property="couponCode" />
-		<result column="COUPON_PERCENT" property="couponPercent" /> 
+		<result column="COUPON_PERCENT" property="couponPercent" />
 	</resultMap>
 	
 	<resultMap id="reserResultSet" type="reser">
 		<result column="RESER_NO" property="reserNo" />
 		<result column="RESER_DATE" property="reserDate" />
-		<result column="RESER_NAME" property="name" />
-		<result column="RESER_PHONE" property="phone" />
+		<result column="RESER_NAME" property="reserName" />
+		<result column="RESER_PHONE" property="reserPhone" />
 		<result column="BICYCLE" property="bicycle" />
+		<result column="MAX_PEOPLE" property="bicycle" />
 		<result column="CANCEL_YN" property="cancelYN" /> 
-		<result column="CHECKIN_TIME" property="checkIn" /> 
-		<result column="CHECKOUT_TIME" property="checkOut" /> 
+		<result column="CHECKIN_DATE" property="checkIn" /> 
+		<result column="CHECKOUT_DATE" property="checkOut" /> 
+		<result column="CHECKIN_TIME" property="checkInTime" /> 
+		<result column="CHECKOUT_TIME" property="checkOutTime" />
 		<result column="PEOPLE" property="people" /> 
 		<result column="ROOM_NO" property="roomNo" /> 
 		<result column="RE_MEM_NO" property="reMemNo" /> 
@@ -60,7 +63,7 @@
 		        TB_MEMBER ON(MEM_NO = CO_MEM_NO)
 	</select>
 	
-	<select id="selectCoupon" resultMap="couponResultSet">
+	<select id="selectCoupon" resultMap="couponResultSet" parameterType="coupon">
 		SELECT
 				TB_MY_COUPON.COUPON_NO COUPON_NO,
 		        COUPON_CONTENT,
@@ -76,7 +79,7 @@
 	</select>
 	
 	
-	<insert id="insertReser">
+	<insert id="insertReser" parameterType="reser">
 		INSERT
 		  INTO 
 		  		TB_RESERVATION
@@ -84,8 +87,8 @@
 		 		(
 		 		SEQ_RESERVATION.NEXTVAL,
 		 		SYSDATE,
-		 		#{name},
-		 		#{phone},
+		 		#{reserName},
+		 		#{reserPhone},
 		 		#{bicycle},
 		 		DEFAULT,
 		 		#{checkIn},
@@ -98,8 +101,51 @@
 				)
 	</insert>
 	
-	<select id="selectReservation">
-		SELECT 
+	<select id="selectReservation" parameterType="_int" resultMap="reserResultSet">
+       SELECT   RESER_NO,
+		        RESER_DATE,
+		        RESER_NAME,
+		        RESER_PHONE,
+		        BICYCLE,
+		        TB_ROOM.CHECKIN_TIME,
+		        TB_ROOM.CHECKOUT_TIME,
+		        TO_CHAR(TB_RESERVATION.CHECKIN_TIME , 'YYYY/MM/DD') AS CHECKIN_DATE, 
+    		    TO_CHAR(TB_RESERVATION.CHECKOUT_TIME , 'YYYY/MM/DD') AS CHECKOUT_DATE, 
+		        MAX_PEOPLE,	
+		        TB_ROOM.ROOM_NO,
+		        RE_MEM_NO,
+		        PAYMENT,
+		        PAYMENT_PRICE,
+		        PEOPLE
+		  FROM (
+                   SELECT
+                           RESER_NO
+                     FROM
+                           TB_RESERVATION
+                    WHERE
+                           CANCEL_YN = 'N'
+                      AND
+                           RE_MEM_NO = #{reMemNo}
+                    ORDER 
+                       BY  RESER_NO DESC)
+          JOIN
+		        TB_RESERVATION USING (RESER_NO)           
+          JOIN
+		        TB_ROOM ON (TB_RESERVATION.ROOM_NO = TB_ROOM.ROOM_NO)	
+		  JOIN
+		        TB_HOTEL ON (TB_ROOM.ROOM_NO = TB_HOTEL.HOTEL_NO)           
+         WHERE 
+				rownum = 1            
+
+	</select>
+	
+	<select id="selectList" resultMap="reserResultSet">
+		SELECT
+				TB_HOTEL.HOTEL_NO,
+				HOTEL_NAME,
+				ROOM_NAME,
+				TB_ROOM.CHECKIN_TIME,
+				TB_ROOM.CHECKOUT_TIME,
 		        RESER_NO,
 		        RESER_DATE,
 		        RESER_NAME,
@@ -107,21 +153,27 @@
 		        BICYCLE,
 		        TO_CHAR(TB_RESERVATION.CHECKIN_TIME , 'YYYY/MM/DD') AS CHECKIN_DATE, 
     		    TO_CHAR(TB_RESERVATION.CHECKOUT_TIME , 'YYYY/MM/DD') AS CHECKOUT_DATE, 
-		        PEOPLE,
-		        ROOM_NO,
+		        MAX_PEOPLE,
+		        TB_ROOM.ROOM_NO,
+		        ROOM_PRICE,
 		        RE_MEM_NO,
 		        PAYMENT,
-		        PAYMENT_PRICE
+		        PAYMENT_PRICE,
+		        HOTEL_PATH
 		  FROM
 		        TB_RESERVATION
 		  JOIN
-		        TB_ROOM USING(ROOM_NO)	
+		        TB_ROOM ON (TB_RESERVATION.ROOM_NO = TB_ROOM.ROOM_NO)	
 		  JOIN
-		        TB_HOTEL USING (HOTEL_NO)
+		        TB_HOTEL ON (TB_ROOM.HOTEL_NO = TB_HOTEL.HOTEL_NO)
+		  JOIN
+		        TB_MEMBER ON (TB_RESERVATION.RE_MEM_NO = TB_MEMBER.MEM_NO)
 		 WHERE
-		   		RESER_NO = #{reserNo}
+		 		RE_MEM_NO = #{reMemNo}  
+		   AND
+		   		CANCEL_YN = 'N'			   
+		 ORDER BY RESER_NO DESC
 	</select>
-	
 	
 	
 	

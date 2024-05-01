@@ -10,6 +10,7 @@ import com.kh.thenolja.reservation.model.dao.ReserRepository;
 import com.kh.thenolja.reservation.model.vo.Coupon;
 import com.kh.thenolja.reservation.model.vo.Reservation;
 
+
 @Service
 public class ReserServiceImpl implements ReserService {
 
@@ -30,13 +31,24 @@ public class ReserServiceImpl implements ReserService {
 	}
 
 	@Override
-	public int insertReser(Reservation reser) {
-		return reserRepository.insertReser(sqlSession, reser);
+	public Reservation insertReser(Reservation reser, int reMemNo) {
+		if(reserRepository.insertReser(sqlSession, reser) > 0 ) {
+		//int reserNo = reser.getReserNo();
+		reser = reserRepository.selectReservation(sqlSession, reMemNo);
+		}
+		return reser;
 	}
-
+/*
 	@Override
 	public Reservation selectReservation(int reserNo) {
 		return reserRepository.selectReservation(sqlSession, reserNo);
 	}
+*/
 
+	@Override
+	public List<Reservation> selectList(int reMemNo) {
+		return reserRepository.selectList(sqlSession, reMemNo);
+	}
+
+	
 }

@@ -23,8 +23,11 @@ public class ReserRepository {
 		return sqlSession.insert("reserMapper.insertReser", reser);
 	}
 
-	public Reservation selectReservation(SqlSessionTemplate sqlSession, int reserNo) {
-		return sqlSession.selectOne("reserMapper.selectReservation", reserNo);
+	public Reservation selectReservation(SqlSessionTemplate sqlSession, int reMemNo) {
+		return sqlSession.selectOne("reserMapper.selectReservation", reMemNo);
 	}
 
+	public List<Reservation> selectList(SqlSessionTemplate sqlSession, int reMemNo) {
+		return sqlSession.selectList("reserMapper.selectList", reMemNo);
+	}
 }

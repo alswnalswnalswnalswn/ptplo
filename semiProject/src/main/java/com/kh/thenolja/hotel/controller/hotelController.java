@@ -32,7 +32,7 @@ public class hotelController {
 	public ModelAndView selectHotel(int hotelNo, HttpSession session, ModelAndView mv) {
 		Hotel hotel2 = hotelService.selectHotel(hotelNo);
 		Room room = hotelService.selectRoom(hotelNo);
-		System.out.println(room);
+		// System.out.println(room);
 		if(hotel2 != null && room != null) {
 			session.setAttribute("hotel", hotelService.selectHotel(hotelNo));
 			session.setAttribute("room", hotelService.selectRoom(hotelNo));

@@ -1,9 +1,0 @@
-package com.kh.thenolja.member.controller;
-
-import com.kh.thenolja.member.model.service.MemberService;
-
-public class memberController {
-	
-	private MemberService memberService;
-
-}

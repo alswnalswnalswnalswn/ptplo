@@ -161,7 +161,7 @@
     <jsp:include page="../common/menubar.jsp"/>
     
     <c:choose>
-    <c:when test="${ empty sessionScope.loginUser }">
+    <c:when test="${ loginUser eq null }">
 		<form action="/login" method="post"></form>
 	<script>
 		alert("로그인이 되어있지 않습니다. 로그인페이지로 이동합니다.");
@@ -211,13 +211,14 @@
 						</tr>
 	               </table>
 				</div>
-
-				<form action="insert.reser?memNo=${ sessionScope.loginUser.memNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }" method="post" id="insert-form">
+				
+				<form action="insert.reser?reMemNo=6" method="get" id="insert-form">
 					<input id="hidePrice" type="hidden" name="paymentPrice" value="${ room.roomPrice }">
 					<input id="couponNo" type="hidden" name="couponNo" value="0">
 					<input type="hidden" name="checkIn" value="${ rinfo.startDate }">
 					<input type="hidden" name="checkOut" value="${ rinfo.endDate }">
 					<input type="hidden" name="people" value="${ rinfo.people }">
+					<input type="hidden" name="reMemNo" value="6">
 					
 					<div id="reser_mem_info">
 		                <br>
@@ -225,11 +226,11 @@
 						<br>
 	               		<div id="mem-name">
 		                    <h5>예약자 이름</h5>
-		                    <input type="text" id="reser-name" name="memName" placeholder="이름을 입력해주세요" style="width:300px; height:40px; border-radius: 5px;" maxlength="4">
+		                    <input type="text" id="reser-name" name="reserName" placeholder="이름을 입력해주세요" style="width:300px; height:40px; border-radius: 5px;" maxlength="4">
 	           			</div>
 		                <div id="mem-phone">
 		                    <h5>전화 번호</h5>
-		                    <input type="text" id="reser-phone" name="memPhone" placeholder="전화번호를 입력해주세요" style="width:300px; height:40px; border-radius: 5px;" maxlength="11">
+		                    <input type="text" id="reser-phone" name="reserPhone" placeholder="전화번호를 입력해주세요" style="width:300px; height:40px; border-radius: 5px;" maxlength="11">
 		                </div>
 		                <div id="mem-bicycle">
 							<br> <h5>이동 방식</h5>

@@ -1,7 +1,0 @@
-package com.kh.thenolja.member.model.serviceervice;
-
-
-public class MemberServiceImpl implements MemberService {
-	
-	
-}

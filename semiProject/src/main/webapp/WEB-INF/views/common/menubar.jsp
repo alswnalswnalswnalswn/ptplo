@@ -348,7 +348,7 @@ div {
 			        
 			        <c:choose>
 			        	<c:when test="${loginUser eq null  }"> <!-- 로그아웃 상태라면 -->
-			         		<li><a href="${  path  }/loginPage" id="logoutMP" onclick="alert('로그인이 필요합니다.')">마이페이지</a></li>
+			         		<li><a href="loginPage" id="logoutMP" onclick="alert('로그인이 필요합니다.')">마이페이지</a></li>
 			         	</c:when>	
 			        	<c:otherwise> <!-- 로그인상태라면 -->
 			         	<li><a href="${  path  }/myPage">마이페이지</a></li>

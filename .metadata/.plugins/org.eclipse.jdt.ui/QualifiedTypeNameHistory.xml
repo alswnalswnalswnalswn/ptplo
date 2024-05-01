@@ -15,4 +15,12 @@
 <fullyQualifiedTypeName name="com.kh.thenolja.hotel.model.vo.SearchOptions"/>
 <fullyQualifiedTypeName name="com.kh.thenolja.reservation.model.vo.ReserInfo"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.reservation.model.Service.ReserService"/>
+<fullyQualifiedTypeName name="com.kh.thenolja.reservation.model.vo.Reservation"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.ParseException"/>
 </qualifiedTypeNameHistroy>

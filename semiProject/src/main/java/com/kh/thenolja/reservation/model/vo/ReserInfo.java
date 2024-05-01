@@ -10,7 +10,7 @@ public class ReserInfo {
 	
 	private String startDate;
 	private String endDate;
-	private int people;
+	private String people;
 	
 	
 

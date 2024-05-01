@@ -16,15 +16,15 @@ public class Reservation {
 	private String cancelYN;
 	private String checkIn;
 	private String checkOut;
-	private int people;
+	private String people;
 	private int roomNo;
-	private int reMemNo;
+	private String reMemNo;
 	private String payment;
 	private int paymentPrice;
 	
 	
-	private String phone;
-	private String name;
+	private String reserPhone;
+	private String reserName;
 	private int memNo;
 	private String hotelName;
 	private String roomName;
