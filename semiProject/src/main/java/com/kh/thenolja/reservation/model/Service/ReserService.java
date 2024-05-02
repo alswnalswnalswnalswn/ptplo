@@ -14,6 +14,8 @@ public interface ReserService {
 
 	List<Reservation> selectList(int reMemNo);
 
+	Reservation selectReserNo(int reserNo);
+
 
 	// Reservation selectReservation(int reserNo);
 

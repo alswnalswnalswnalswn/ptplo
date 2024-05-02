@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="refundMapper">
+
+	<resultMap id="refundResultSet" type="refund">
+		<result column="RF_RESER_NO" property="reserNo" />
+		<result column="REFUND_PRICE" property="refundPrice" />
+		<result column="REFUND_ACC_NO" property="accNo" />
+		<result column="REFUND_NAME" property="refundName" />
+		<result column="BANK" property="bank" />
+	</resultMap>
+
+
+	<insert id="insertRefund" parameterType="refund">	
+		INSERT
+		  INTO
+		  		TB_REFUND
+		  		(
+		  		RF_RESER_NO,
+		  		REFUND_PRICE,
+		  		REFUND_ACC_NO,
+		  		REFUND_NAME,
+		  		BANK
+		  		)
+		VALUES
+				(
+				#{ reserNo },
+				#{ refundPrice },
+				#{ accNo },
+				#{ refundName },
+				#{ bank }
+				)
+	</insert>
+	
+	<update id="deleteReser" parameterType="_int">
+		UPDATE
+				TB_RESERVATION
+		   SET
+		   		CANCEL_YN = 'Y'
+		 WHERE
+		 		RESER_NO = #{reserNo}
+	</update>
+	
+	<select id="selectRefund" parameterType="refund" resultMap="refundResultSet">
+        SELECT
+				RF_RESER_NO,
+				REFUND_PRICE,
+				REFUND_ACC_NO,
+				REFUND_NAME,
+				BANK
+		  FROM
+		        TB_REFUND
+		  JOIN
+		  		TB_RESERVATION ON (RF_RESER_NO = RESER_NO)      
+		 WHERE
+		 		RF_RESER_NO = #{reserNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+</mapper>  

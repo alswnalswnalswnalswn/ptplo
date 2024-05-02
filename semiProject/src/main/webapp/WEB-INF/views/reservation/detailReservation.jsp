@@ -186,7 +186,6 @@
             <div id="reser_info">
 
                 <div id="reser_no"><p>No.${ reser.reserNo }</p></div>
-                
                 <div id="reser_hotel_img"><img src="${ hotel.hotelPath }" alt="" width="220px" height="220px"></div>
 
                 <div id="reser_detail">
@@ -282,7 +281,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-        <form action="${path }/refund.insert?reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&reserNo=${ reser.reserNo }&roomNo=${ room.roomNo }"  method="post"> 
+        <form action="refund.insert?reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&reserNo=${ reser.reserNo }&roomNo=${ room.roomNo }"  method="post"> 
             <label for="text">예금주</label>
             <input type="text" id="refund_name" required name="refundName"><br><br>
             <input type="hidden" name="refundPrice" value="${ reser.paymentPrice }">

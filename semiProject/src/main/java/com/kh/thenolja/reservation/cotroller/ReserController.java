@@ -1,14 +1,12 @@
 package com.kh.thenolja.reservation.cotroller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,8 +82,6 @@ public class ReserController {
 	@GetMapping("myReser.list")
 	public ModelAndView myReser(String reMemNo, ModelAndView mv, HttpSession session) {
 		int memNo = Integer.parseInt(reMemNo);
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
-		Date currentDate = new Date();
 		List<Reservation> reserList = reserService.selectList(memNo);
 		if(reserList != null) {
 			/*
@@ -108,4 +104,43 @@ public class ReserController {
 		}
 		return mv;
 	}
+	
+	@GetMapping("reserDetail")
+	public ModelAndView reserDetail(int reserNo, ModelAndView mv, HttpSession session) {
+		
+		Reservation reser = reserService.selectReserNo(reserNo);
+		
+		if(reser != null) {
+			session.setAttribute("reser", reser);
+			mv.setViewName("reservation/detailReservation");
+		} else {
+			mv.addObject("errorMsg", "예약 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

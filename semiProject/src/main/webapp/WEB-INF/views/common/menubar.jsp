@@ -276,7 +276,7 @@ div {
 	            </div>
 	
 	            <div id="admin_login">
-	                <p><a href="${ path }/logout">로그아웃</a></P>
+	                <p><a href="logout">로그아웃</a></P>
 	            </div>
 	        </div>
 	        <div id="line"></div>

@@ -32,7 +32,7 @@
 		<result column="PAYMENT_PRICE" property="paymentPrice" /> 
 	</resultMap>
 	
-	<select id="selectRoom">
+	<select id="selectRoom" parameterType="com.kh.thenolja.hotel.model.vo.Room">
  		SELECT
 		        ROOM_NO, 
 		        HOTEL_NO,
@@ -156,6 +156,7 @@
 		        MAX_PEOPLE,
 		        TB_ROOM.ROOM_NO,
 		        ROOM_PRICE,
+		        PEOPLE,
 		        RE_MEM_NO,
 		        PAYMENT,
 		        PAYMENT_PRICE,
@@ -175,7 +176,31 @@
 		 ORDER BY RESER_NO DESC
 	</select>
 	
-	
+	<select id="selectReserNo" parameterType="reser" resultMap="reserResultSet">
+		SELECT 
+		        RESER_NO,
+		        RESER_DATE,
+		        RESER_NAME,
+		        RESER_PHONE,
+		        BICYCLE,
+		        TO_CHAR(TB_RESERVATION.CHECKIN_TIME , 'YYYY/MM/DD') AS CHECKIN_DATE, 
+    		    TO_CHAR(TB_RESERVATION.CHECKOUT_TIME , 'YYYY/MM/DD') AS CHECKOUT_DATE, 
+		        PEOPLE,
+		        ROOM_NO,
+		        RE_MEM_NO,
+		        PAYMENT,
+		        PAYMENT_PRICE
+		  FROM
+		        TB_RESERVATION
+		  JOIN
+		        TB_ROOM USING(ROOM_NO)	
+		  JOIN
+		        TB_HOTEL USING (HOTEL_NO)
+		 WHERE
+		   		RESER_NO = #{ reserNo }
+   		   AND
+		   		CANCEL_YN = 'N'			
+	</select>
 	
 	
 	

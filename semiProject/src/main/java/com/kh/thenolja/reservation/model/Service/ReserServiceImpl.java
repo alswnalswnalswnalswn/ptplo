@@ -50,5 +50,10 @@ public class ReserServiceImpl implements ReserService {
 		return reserRepository.selectList(sqlSession, reMemNo);
 	}
 
+	@Override
+	public Reservation selectReserNo(int reserNo) {
+		return reserRepository.selectReserNo(sqlSession, reserNo);
+	}
+
 	
 }

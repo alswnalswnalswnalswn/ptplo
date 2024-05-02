@@ -51,13 +51,13 @@
     #reser_hotel_img > img{
         border-radius: 10px;
     }
-    #reser_detail > p{
+    .reser_detail > p{
         font-size: 20px;
     }
-    #reser_detail > h3{
+    .reser_detail > h3{
         font-weight: bold;
     }
-    #reser_detail{
+    .reser_detail{
         width: 60%;
         height: 100%;
         float: left;
@@ -101,14 +101,12 @@
     /*********************/
 </style>
 
-<% SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd"); %>
 </head>
 <body>
+
    	<jsp:include page="../common/menubar.jsp"/>
-   	<c:set var="path" value="${ pageContext.request.contextPath }"/>
-    
-    <c:if test="${ empty sessionScope.loginUser }">
-		<form action="${path }/login" method="post"></form>
+    <c:if test="${ loginUser eq null }">
+		<form action="login" method="post"></form>
 	<script>
 		alert("로그인이 되어있지 않습니다. 로그인페이지로 이동합니다.");
 	 </script>
@@ -116,13 +114,13 @@
 	<div id="output">
         <div id="content_title">
             <div id="left_img">
-                <a href="${ path }"><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
+                <a href=""><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
             </div>
             <div id="left_title"><h3>내 예약 내역</h3></div>
 		</div>
-    
+    <div id="content">
     <c:choose>
-		<c:when test="${ reserList.isEmpty()}">
+		<c:when test="${ empty reserList }">
 			<table>
 				<tr>
 					<th style="font-size:40px;" colspan="5">예약 내역이 존재하지 않습니다.</th>
@@ -130,35 +128,24 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-		<c:forEach var="r" items="${ requestScope.reserList }">
-		<div id="content">
+		<c:forEach var="r" items="${ sessionScope.reserList }">
+		
 	        <div id="reser_info">
-	            <div id="reser_hotel_img"><img src="${ r.hotelPath }" alt="" width="220px" height="220px"></div>
-				<input type="hidden" name="hotelNo" value="${ r.hotelNo }">
-				<input type="hidden" name="roomNo" value="${ r.roomNo }">
+	            <div id="reser_hotel_img"><img src="${ hotel.hotelPath }" alt="" width="220px" height="220px"></div>
+				<input type="hidden" name="hotelNo" value="${ hotel.hotelNo }">
+				<input type="hidden" name="roomNo" value="${ room.roomNo }">
 				<input type="hidden" name="reserNo" value="${ r.reserNo }">
-	            <div id="reser_detail" onclick="myList();">
-	           
-	           
-	            
-	                <h3>${ r.hotelName }</h3>
-	                <p>${ r.roomName }</p>
+	            <div class="reser_detail">
+	            ${ r.reserNo }
+	                <h3>${ hotel.hotelName }</h3>
+	                <p>${ room.roomName }</p>
 	                <p>${ r.people }인</p>
 	                <p>${ r.paymentPrice }원</p>
-	                <p>${ r.checkIn }&nbsp;&nbsp;오후 ${ r.checkInTime } : 00 ~ ${ r.checkOut }&nbsp;&nbsp;오전 ${ r.checkOutTime } : 00</p>
+	                <p>${ r.checkIn }&nbsp;&nbsp;오후 ${ room.checkInTime } : 00 ~ ${ r.checkOut }&nbsp;&nbsp;오전 ${ room.checkOutTime } : 00</p>
 	            </div>
-	            <script>
-	            	function myList(){
-	            		
-	            		location.href="${ path }/reserDetail?reserNo=${ r.reserNo }";
-	            	}
-	            
-	            </script>
-
 	
             <div id="review_in">
 
-	            <c:set var="currentDate" value="<%= new java.util.Date()%>"/>
 	            <!-- 
 	            currentDate.compareTo(${specificDate}) < 0 
 	             -->
@@ -166,7 +153,7 @@
 	             
 	        <c:choose>
 		        <c:when test="${ r.reserStatus }">
-	            	<a href="${path }/review.insert?reserNo=${ r.reserNo }&hotelNo=${ r.hotelNo }&roomNo=${ r.roomNo }">
+	            	<a href="review.insert?reserNo=${ r.reserNo }&hotelNo=${ r.hotelNo }&roomNo=${ r.roomNo }">
 	                <button id="reser_btn" class="btn btn-outline-secondary">리뷰 작성</button></a>
 	            </c:when>
 	            <c:otherwise>
@@ -176,18 +163,34 @@
             
             </div>
         </div>
-	</div>
+	
 		</c:forEach>
 		</c:otherwise>
 	</c:choose>
+	</div>
 </div>
 
 
-
 	<div id="homeBtn">
-		<a href="${path }"><button id="goHome" class="btn btn-info">메인으로 돌아가기</button></a>
+		<a href=""><button id="goHome" class="btn btn-info">메인으로 돌아가기</button></a>
 	</div>
 
-
+	            <script>
+	            $(() => {
+	            	$('.reser_detail').click(function() {
+						const reserNo = $(this).siblings('input[name=reserNo]').val();
+						// console.log(reserNo);
+						location.href="reserDetail?reserNo=" + reserNo;
+					});
+	            });
+	            <%--
+	            const l = ${ r.reserNo };
+	            	function myList(e) {
+	            		
+	            		location.href="reserDetail?reserNo=";
+	            	}
+	            
+			--%>
+	            </script>
 </body>
 </html>

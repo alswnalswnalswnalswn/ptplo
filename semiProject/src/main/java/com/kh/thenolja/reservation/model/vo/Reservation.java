@@ -37,9 +37,5 @@ public class Reservation {
 	private boolean reserStatus;
 
 
-
-
-	
-	
 	
 }

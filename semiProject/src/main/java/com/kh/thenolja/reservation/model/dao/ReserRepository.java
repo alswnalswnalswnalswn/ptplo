@@ -30,4 +30,8 @@ public class ReserRepository {
 	public List<Reservation> selectList(SqlSessionTemplate sqlSession, int reMemNo) {
 		return sqlSession.selectList("reserMapper.selectList", reMemNo);
 	}
+
+	public Reservation selectReserNo(SqlSessionTemplate sqlSession, int reserNo) {
+		return sqlSession.selectOne("reserMapper.selectReserNo", reserNo);
+	}
 }
