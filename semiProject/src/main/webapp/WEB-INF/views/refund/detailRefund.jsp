@@ -271,9 +271,9 @@
                     <table>
                     <tr>
                             <td width="80px">이름</td> 
-                            <td>${ reser.name }</td>
+                            <td>${ reser.reserName }</td>
                             <td width="80px">전화번호</td> 
-                            <td>${ reser.phone }</td>
+                            <td>${ reser.reserPhone }</td>
                         </tr>
                         <tr>
                             <td>이동방식</td> 
@@ -323,7 +323,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-        <form action="${ path }/update.refund?reserNo=${ reser.reserNo }&reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }"  method="post"> 
+        <form action="update.refund?reserNo=${ reser.reserNo }&reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }"  method="post"> 
             <label for="text">예금주</label>
             <input type="text" id="refund_name" required name="refundName"><br><br>
             <input type="hidden" name="refundPrice" value="${ reser.paymentPrice }">
@@ -347,7 +347,7 @@
     </div>
   </div>
 <div id="return_main">
-   <a href="${ path }/myReser.list?reserNo=${ reser.reserNo }&reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }"><button id="re_main" type="button">내 예약내역</button></a>
+   <a href="myReser.list?reserNo=${ reser.reserNo }&reMemNo=${ reser.reMemNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }"><button id="re_main" type="button">내 예약내역</button></a>
 </div> 
     <br><br><br><br><br><br><br><br><br><br>
     

@@ -58,7 +58,16 @@
 		 		RF_RESER_NO = #{reserNo}
 	</select>
 	
-	
+	<update id="updateRefund" parameterType="refund">
+		UPDATE
+				TB_REFUND
+		   SET
+		   		REFUND_ACC_NO = #{accNo},
+		   		REFUND_NAME = #{refundName},
+		   		BANK = #{bankName}
+		 WHERE
+		 		RF_RESER_NO = #{reserNo}
+	</update>
 	
 	
 	

@@ -145,12 +145,8 @@
 	            </div>
 	
             <div id="review_in">
+	             
 
-	            <!-- 
-	            currentDate.compareTo(${specificDate}) < 0 
-	             -->
-	             
-	             
 	        <c:choose>
 		        <c:when test="${ r.reserStatus }">
 	            	<a href="review.insert?reserNo=${ r.reserNo }&hotelNo=${ r.hotelNo }&roomNo=${ r.roomNo }">

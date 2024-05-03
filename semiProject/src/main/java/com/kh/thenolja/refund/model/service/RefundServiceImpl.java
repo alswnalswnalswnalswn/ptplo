@@ -23,4 +23,12 @@ public class RefundServiceImpl implements RefundService {
 		return refundRepository.selectRefund(sqlSession, reserNo);
 	}
 
+	@Override
+	public Refund updateRefund(Refund refund, int reserNo) {
+		if(refundRepository.updateRefund(sqlSession, refund) > 0) {
+			refund = refundRepository.selectRefund(sqlSession, reserNo);
+		}
+		return refund;
+	}
+
 }

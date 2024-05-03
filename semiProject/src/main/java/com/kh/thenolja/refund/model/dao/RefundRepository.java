@@ -20,4 +20,8 @@ public class RefundRepository {
 		return sqlSession.selectOne("refundMapper.selectRefund", reserNo);
 	}
 
+	public int updateRefund(SqlSessionTemplate sqlSession, Refund refund) {
+		return sqlSession.update("refundMapper.updateRefund", refund);
+	}
+
 }

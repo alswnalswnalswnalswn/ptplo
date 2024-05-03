@@ -30,4 +30,19 @@ public class RefundController {
 		}
 		return mv;
 	}
+	
+	@PostMapping("update.refund")
+	public ModelAndView updateRefund(Refund refund, int reserNo, ModelAndView mv, HttpSession session) {
+		
+		refund = refundService.updateRefund(refund, reserNo);
+		
+		if(refund != null) {
+			session.setAttribute("refund", refund);
+			mv.setViewName("refund/detailRefund");
+		} else {
+			mv.addObject("errorMsg", "예약 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 }
