@@ -12,7 +12,7 @@ public class Refund {
 	private int refundPrice;
 	private String accNo;
 	private String refundName;
-	private String bank;
+	private String bankName;
 	
 
 }

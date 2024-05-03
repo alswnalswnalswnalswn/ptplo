@@ -196,8 +196,7 @@
 </head>
 <body>
     <jsp:include page="../common/menubar.jsp"/>
-    <c:set var="path" value="${ pageContext.request.contextPath }"/>
-    
+
     <div id="content">
         <div id="content_title">
             <div id="left_img">
@@ -303,7 +302,7 @@
                         <td>${ refund.refundName }</td>
                     </tr>
                     <tr>
-                        <td>${ refund.bank }</td> 
+                        <td>${ refund.bankName }</td> 
                         <td>${ refund.accNo }</td>
                     </tr>
                 </table>

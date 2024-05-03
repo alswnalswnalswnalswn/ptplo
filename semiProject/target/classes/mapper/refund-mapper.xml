@@ -9,7 +9,7 @@
 		<result column="REFUND_PRICE" property="refundPrice" />
 		<result column="REFUND_ACC_NO" property="accNo" />
 		<result column="REFUND_NAME" property="refundName" />
-		<result column="BANK" property="bank" />
+		<result column="BANK" property="bankName" />
 	</resultMap>
 
 
@@ -30,7 +30,7 @@
 				#{ refundPrice },
 				#{ accNo },
 				#{ refundName },
-				#{ bank }
+				#{ bankName }
 				)
 	</insert>
 	
