@@ -16,7 +16,7 @@ public class Reservation {
 	private String cancelYN;
 	private String checkIn;
 	private String checkOut;
-	private String people;
+	private int people;
 	private int roomNo;
 	private String reMemNo;
 	private String payment;

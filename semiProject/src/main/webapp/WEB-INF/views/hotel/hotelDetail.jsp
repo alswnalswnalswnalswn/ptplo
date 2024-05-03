@@ -49,7 +49,7 @@
 						<div>
 							<p>쿠폰적용가능</p>
 							<!-- ?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&startDate=2024-04-29&endDate=2024-04-31&location=강릉&maxPeople=2&memNo=${loginUser.memNo} -->
-							<a href="insertReservation?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&startDate=2024-04-29&endDate=2024-04-31&location=강릉&maxPeople=2&memNo=${loginUser.memNo}">
+							<a href="insertReservation?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&startDate=2024-04-29&endDate=2024-04-31&location=강릉&people=2&memNo=${loginUser.memNo}">
 							<button class="btn btn-sm btn-info">객실 예약</button></a>
 							<a href="/nonInsertReservation?hotelNo=${ hotel.hotelNo }&roomNo=${ room.roomNo }&daterange=${ dateRangeForm }&location=${ hotelDetail.hotelLocation }&people=${ searchData.maxPeople }">
 							<button class="btn btn-sm btn-primary" >비회원예약하기</button></a>

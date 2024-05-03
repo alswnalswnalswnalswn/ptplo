@@ -211,7 +211,7 @@
 						</tr>
 	               </table>
 				</div>
-				
+			
 				<form action="insert.reser?reMemNo=6" method="get" id="insert-form">
 					<input id="hidePrice" type="hidden" name="paymentPrice" value="${ room.roomPrice }">
 					<input id="couponNo" type="hidden" name="couponNo" value="0">

@@ -27,10 +27,11 @@ public class ReserController {
 	
 	@RequestMapping("insertReservation")
 	public ModelAndView insertReservation(String startDate, String endDate, String location, 
-									String maxPeople, HttpSession session, ModelAndView mv) {
+									String people, HttpSession session, ModelAndView mv) {
 		ReserInfo rinfo = new ReserInfo();
 		rinfo.setStartDate(startDate);
 		rinfo.setEndDate(endDate);
+		rinfo.setPeople(people);
 		
 		mv.addObject("rinfo", rinfo);
 		mv.setViewName("reservation/insertReservation");
@@ -53,6 +54,7 @@ public class ReserController {
 		
 		int memNo = Integer.parseInt(reMemNo);
 		reser.setRoomNo(4);
+		reser.setPeople(2);
 		reser.setMemNo(memNo);
 		reser = reserService.insertReser(reser, memNo);
 		
