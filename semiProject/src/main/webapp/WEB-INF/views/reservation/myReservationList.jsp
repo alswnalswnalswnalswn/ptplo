@@ -129,14 +129,13 @@
 		</c:when>
 		<c:otherwise>
 		<c:forEach var="r" items="${ sessionScope.reserList }">
-		
 	        <div id="reser_info">
 	            <div id="reser_hotel_img"><img src="${ hotel.hotelPath }" alt="" width="220px" height="220px"></div>
 				<input type="hidden" name="hotelNo" value="${ hotel.hotelNo }">
 				<input type="hidden" name="roomNo" value="${ room.roomNo }">
 				<input type="hidden" name="reserNo" value="${ r.reserNo }">
 	            <div class="reser_detail">
-	            ${ r.reserNo }
+	            
 	                <h3>${ hotel.hotelName }</h3>
 	                <p>${ room.roomName }</p>
 	                <p>${ r.people }인</p>
@@ -144,22 +143,55 @@
 	                <p>${ r.checkIn }&nbsp;&nbsp;오후 ${ room.checkInTime } : 00 ~ ${ r.checkOut }&nbsp;&nbsp;오전 ${ room.checkOutTime } : 00</p>
 	            </div>
 	
-            <div id="review_in">
-	             
-
-	        <c:choose>
-		        <c:when test="${ r.reserStatus }">
+            <div id="review_in"><!-- 
+			<script>
+			    // 현재 날짜와 시간을 가져오는 함수
+			    function getCurrentDate() {
+			        var now = new Date();
+			        var year = now.getFullYear();
+			        var month = now.getMonth() + 1;
+			        var day = now.getDate();
+			        
+			        // 한 자리 수인 경우 앞에 0 추가
+			        if (month < 10) {
+			            month = '0' + month;
+			        }
+			        if (day < 10) {
+			            day = '0' + day;
+			        }
+			
+			        // "YYYY-MM-DD" 형식의 문자열 반환
+			        return year + '-' + month + '-' + day;
+			    }
+			
+			    // 현재 날짜를 가져오기
+			    var currentDateAsString = getCurrentDate();
+			
+			    // checkOutTimeDate를 문자열로 표현 (예시)
+			    var checkOutDate = ${r.checkOut}; // "YYYY-MM-DD" 형식의 날짜 문자열
+			
+			    // currentDateAsString과 checkOutTimeDateAsString 비교
+			    if (currentDateAsString > checkOutDate) {
+			    	${r.reserStatus} = true;
+			    } else {
+			    	${r.reserStatus} = false;
+			    }
+			    
+			</script>
+			 -->
+			 
+		   <c:choose>
+		        <c:when test="${r.reserStatus eq true}">
 	            	<a href="review.insert?reserNo=${ r.reserNo }&hotelNo=${ r.hotelNo }&roomNo=${ r.roomNo }">
-	                <button id="reser_btn" class="btn btn-outline-secondary">리뷰 작성</button></a>
-	            </c:when>
-	            <c:otherwise>
-	                <a href="#"><button id="reser_btn" class="btn btn-outline-secondary" disabled>리뷰 작성</button></a>
-	            </c:otherwise>
-            </c:choose>
-            
-            </div>
-        </div>
-	
+	                <button id="reser_btn${r.reserNo}" class="btn btn-outline-secondary">리뷰 작성</button></a>
+		        </c:when>
+		        <c:otherwise>
+	                <button id="reser_btn${r.reserNo}" class="btn btn-outline-secondary" disabled>리뷰 작성</button>
+		        </c:otherwise>
+			    </c:choose>
+			    
+		            </div>
+		        </div>
 		</c:forEach>
 		</c:otherwise>
 	</c:choose>
@@ -187,6 +219,8 @@
 	            	}
 	            
 			--%>
+			
+			
 	            </script>
 </body>
 </html>

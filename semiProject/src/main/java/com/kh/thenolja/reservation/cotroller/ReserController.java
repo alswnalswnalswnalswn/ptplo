@@ -1,12 +1,13 @@
 package com.kh.thenolja.reservation.cotroller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,6 @@ import com.kh.thenolja.reservation.model.vo.Coupon;
 import com.kh.thenolja.reservation.model.vo.ReserInfo;
 import com.kh.thenolja.reservation.model.vo.Reservation;
 
-
 @RestController
 public class ReserController {
 	
@@ -28,42 +28,29 @@ public class ReserController {
 	@RequestMapping("insertReservation")
 	public ModelAndView insertReservation(String startDate, String endDate, String location, 
 									String maxPeople, HttpSession session, ModelAndView mv) {
-		
-		// List<Coupon> clist = reserService.selectCouponList();
-		
 		ReserInfo rinfo = new ReserInfo();
 		rinfo.setStartDate(startDate);
 		rinfo.setEndDate(endDate);
-		rinfo.setPeople(maxPeople);
-		/*
-		String checkIn = (String)session.getAttribute("startDate");
-		String checkOut = (String)session.getAttribute("endDate");
-		String people = (String)session.getAttribute("maxPeople");
-		Reservation reser = new Reservation();
-		reser.setCheckIn(checkIn);
-		reser.setCheckOut(checkOut);
-		reser.setPeople(people);
-		*/
-		// session.setAttribute("clist", clist);
+		
 		mv.addObject("rinfo", rinfo);
-		// session.setAttribute("reser", reser);
 		mv.setViewName("reservation/insertReservation");
 		return mv;
 	}
+	
 	@ResponseBody
 	@GetMapping(value="cupon.jqAjax", produces="application/json; charset=UTF-8")
 	public String selectCoupon(int memberNo) {
 		
 		List<Coupon> coupon = reserService.selectCoupon(memberNo);
-		// System.out.println(coupon);
 		return new Gson().toJson(coupon);
 	}
 	
 	@GetMapping("insert.reser")
 	public ModelAndView insertReser(Reservation reser, ModelAndView mv, HttpSession session, String reMemNo) {
 		
-		reser.setCheckIn("2024-05-04");
-		reser.setCheckOut("2024-05-06");
+		reser.setCheckIn("2024-05-01");
+		reser.setCheckOut("2024-05-02");
+		
 		int memNo = Integer.parseInt(reMemNo);
 		reser.setRoomNo(4);
 		reser.setMemNo(memNo);
@@ -84,20 +71,21 @@ public class ReserController {
 		
 		int memNo = Integer.parseInt(reMemNo);
 		List<Reservation> reserList = reserService.selectList(memNo);
+		
 		if(reserList != null) {
-			if(reserList[i])
-			/*
 			for(int i = 0; i < reserList.size(); i++) {
-				try {
-					boolean reserStatus = dateformat.parse(reserList.get(i).getCheckOut()).before(currentDate);
-					
-					reserList.get(i).setReserStatus(reserStatus);
-				} catch (ParseException e) {
-					
-					e.printStackTrace();
-				}
-			}
-			*/	
+			    Date currentDate = new Date();
+			    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			    String currentDateTime = dateFormat.format(currentDate);
+			    String checkoutDateTime = reserList.get(i).getCheckOut();
+				
+			    if(currentDateTime.compareTo(checkoutDateTime) > 0) {
+			    	reserList.get(i).setReserStatus(true);
+			    	
+		 	    } else {
+		 	    	reserList.get(i).setReserStatus(false);
+			    }
+			} 
 			session.setAttribute("reserList", reserList);
 			mv.setViewName("reservation/myReservationList");
 		} else {
