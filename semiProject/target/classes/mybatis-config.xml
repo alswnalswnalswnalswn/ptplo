@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.thenolja.reservation.model.vo.Reservation" alias="reser" />
 		<typeAlias type="com.kh.thenolja.refund.model.vo.Refund" alias="refund" />
 		<typeAlias type="com.kh.thenolja.reservation.model.vo.Coupon" alias="coupon" />
+		<typeAlias type="com.kh.thenolja.review.model.vo.Review" alias="review" />
 	</typeAliases>
 		
 		
@@ -24,6 +25,7 @@
 		<mapper resource="/mapper/hotel-mapper.xml" />
 		<mapper resource="/mapper/reser-mapper.xml" />
 		<mapper resource="/mapper/refund-mapper.xml" />
+		<mapper resource="/mapper/review-mapper.xml" />
 	</mappers>
 
 </configuration>

@@ -15,7 +15,7 @@ public class ReviewRepository {
 	}
 
 	public List<Review> selectReviewList(SqlSessionTemplate sqlSession, int hotelNo) {
-		return sqlSession.selectList("reviewMapper.selectList", hotelNo);
+		return sqlSession.selectList("reviewMapper.selectReviewList", hotelNo);
 	}
 
 }

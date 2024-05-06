@@ -131,7 +131,7 @@
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
 	
-	<form action="reviewInsert.do?reserNo=${ reser.reserNo}&hotelNo=${hotel.hotelNo}" method="post" enctype="multipart/form-data">
+	<form action="reviewInsert.do?reserNo=${ reser.reserNo }&hotelNo=${hotel.hotelNo}" method="post" enctype="multipart/form-data">
 	    <div id="content">
 			<div id="content_title">
 			   	<div id="left_img">
@@ -177,7 +177,7 @@
 		    <div id="footer">
 		        <button id="add" type="submit">등록하기</button>
 		    </div>
-			<input id="starScore" type="hidden" name="starScore" value="">
+			<input id="starScore" type="hidden" name="score" value="">
 		</div>
 </form>    
      <script>

@@ -7,13 +7,67 @@
 	<resultMap id="reviewResultSet" type="review">
 		<result column="RV_RESER_NO" property="reserNo" />
 		<result column="IMG_PATH" property="imgPath" />
-		<result column="REVIEW_CONTENT" property="content" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
 		<result column="REVIEW_SCORE" property="score" />
 		<result column="CREATE_DATE" property="createDate" />
 		<result column="REVIEW_YN" property="reviewYN" />
 	</resultMap>
-
+ 
+	<insert id="reviewInsert" parameterType="review">
+		INSERT
+		  INTO
+		  		TB_REVIEW
+		VALUES
+				(
+				#{reserNo},
+				#{imgPath},
+				#{reviewContent},
+				#{score},
+				SYSDATE,
+				DEFAULT
+				)
+	</insert>
 	
+	<select id="selectReviewList" resultMap="reviewResultSet" parameterType="_int">
+        SELECT
+                NICKNAME,
+                RV_RESER_NO,
+                IMG_PATH,
+                REVIEW_CONTENT,
+           CASE WHEN REVIEW_SCORE = 1 THEN '★' 
+                WHEN REVIEW_SCORE = 2 THEN '★★'
+                WHEN REVIEW_SCORE = 3 THEN '★★★'
+                WHEN REVIEW_SCORE = 4 THEN '★★★★'
+           ELSE '★★★★★'
+           END AS "REVIEW_SCORE",
+                CREATE_DATE,
+                TB_HOTEL.HOTEL_NO,
+                HOTEL_NAME,
+                ROOM_NAME,
+                TB_ROOM.ROOM_NO,
+                ROOM_PRICE,
+                MEM_NO,
+                PAYMENT_PRICE,
+                HOTEL_PATH
+        FROM
+                TB_REVIEW
+        JOIN
+                TB_RESERVATION ON (TB_REVIEW.RV_RESER_NO = TB_RESERVATION.RESER_NO)
+        JOIN
+                TB_MEMBER ON (TB_RESERVATION.RE_MEM_NO = TB_MEMBER.MEM_NO)
+       	JOIN
+                TB_ROOM ON (TB_ROOM.ROOM_NO = TB_RESERVATION.ROOM_NO)
+        JOIN
+                TB_HOTEL ON (TB_HOTEL.HOTEL_NO = TB_ROOM.HOTEL_NO)       
+	   WHERE
+		   		REVIEW_YN = 'Y' 
+         AND
+                TB_HOTEL.HOTEL_NO = #{hotelNo}
+       ORDER
+          BY
+                CREATE_DATE DESC 
+	
+	</select>
 	
 	
 	

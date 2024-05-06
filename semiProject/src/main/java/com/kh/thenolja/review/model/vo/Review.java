@@ -12,7 +12,7 @@ public class Review {
 	
 	private int reserNo;
 	private String imgPath;
-	private String content;
+	private String reviewContent;
 	private String score;
 	private Date createDate;
 	private String reviewYN;

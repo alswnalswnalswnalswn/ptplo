@@ -1,22 +1,20 @@
 package com.kh.thenolja.review.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.kh.thenolja.reservation.model.vo.Coupon;
 import com.kh.thenolja.review.model.service.ReviewService;
 import com.kh.thenolja.review.model.vo.Review;
 @Controller
@@ -31,25 +29,51 @@ public class ReviewController {
 	}
 	
 	@PostMapping("reviewInsert.do")
-	public String reviewInsert(Review review, MultipartFile upfile) {
+	public String reviewInsert(Review review, MultipartFile upfile, HttpSession session, int hotelNo) {
 		
 		if(!upfile.getOriginalFilename().equals("")) {
 			
 			review.setOriginName(upfile.getOriginalFilename());
-			review.setChangeName(saveFile(upfile));
-			
+			review.setChangeName(saveFile(upfile, session));
+			review.setImgPath("resources/reviewImage/" + review.getOriginName());
 		}
 		if(reviewService.reviewInsert(review) > 0) {
 			
-			return "redirect:list.review";
+			return "redirect:list.review?hotelNo=" + hotelNo;
 		} else {
 			return "common/errorPage";
 		}
 	}
+	
+	public String saveFile(MultipartFile upfile, HttpSession session) {
+		
+		String originName = upfile.getOriginalFilename();
+		
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String currentTime = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
+		
+		int ranNum = (int)Math.random() * 90000 + 10000;
+		
+		String changeName = currentTime + ranNum + ext;
+		
+		String savePath = session.getServletContext().getRealPath("/resources/reviewImage/");
+		
+			try {
+				upfile.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+			}		
+		return "resources/reviewImage/" + changeName;
+	}
+	
 	@RequestMapping("list.review")
-	public String selectReviewList(int hotelNo) {
-		List<Review> reviewList = reviewService.selectReviewList(hotelNo)
-			return new Gson().toJson(reviewList);
+	public ModelAndView selectReviewList(int hotelNo, ModelAndView mv) {
+		
+		List<Review> reviewList = reviewService.selectReviewList(hotelNo);
+		mv.addObject("reviewList", reviewList);
+		mv.setViewName("review/reviewList");
+		return mv;
 		
 	}
 }

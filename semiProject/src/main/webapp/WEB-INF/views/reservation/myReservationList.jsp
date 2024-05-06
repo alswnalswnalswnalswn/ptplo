@@ -135,7 +135,7 @@
 				<input type="hidden" name="roomNo" value="${ room.roomNo }">
 				<input type="hidden" name="reserNo" value="${ r.reserNo }">
 	            <div class="reser_detail">
-	            
+	            	
 	                <h3>${ hotel.hotelName }</h3>
 	                <p>${ room.roomName }</p>
 	                <p>${ r.people }인</p>
@@ -182,7 +182,7 @@
 			 
 		   <c:choose>
 		        <c:when test="${r.reserStatus eq true}">
-	            	<a href="review.insert?reserNo=${ r.reserNo }&hotelNo=${ r.hotelNo }&roomNo=${ r.roomNo }">
+	            	<a href="review.insert?reserNo=${ r.reserNo }&hotelNo=${ hotel.hotelNo }&roomNo=${ r.roomNo }">
 	                <button id="reser_btn${r.reserNo}" class="btn btn-outline-secondary">리뷰 작성</button></a>
 		        </c:when>
 		        <c:otherwise>

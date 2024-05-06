@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="thenolja.tb_review.model.vo.Review, java.util.ArrayList" %>  
-<%
-	ArrayList<Review> myList = (ArrayList<Review>)request.getAttribute("myList");
-	
-%>	
 <!DOCTYPE html>
 <html>
 <head>
