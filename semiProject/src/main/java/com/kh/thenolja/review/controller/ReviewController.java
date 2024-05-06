@@ -35,7 +35,7 @@ public class ReviewController {
 			
 			review.setOriginName(upfile.getOriginalFilename());
 			review.setChangeName(saveFile(upfile, session));
-			review.setImgPath("resources/reviewImage/" + review.getOriginName());
+			review.setImgPath(review.getChangeName());
 		}
 		if(reviewService.reviewInsert(review) > 0) {
 			
@@ -71,8 +71,9 @@ public class ReviewController {
 	public ModelAndView selectReviewList(int hotelNo, ModelAndView mv) {
 		
 		List<Review> reviewList = reviewService.selectReviewList(hotelNo);
-		mv.addObject("reviewList", reviewList);
-		mv.setViewName("review/reviewList");
+//		mv.addObject("reviewList", reviewList);
+//		mv.setViewName("review/reviewList");
+		mv.addObject("reviewList", reviewList).setViewName("review/reviewList");
 		return mv;
 		
 	}
