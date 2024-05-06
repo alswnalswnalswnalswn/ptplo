@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewMapper">
+
+	<resultMap id="reviewResultSet" type="review">
+		<result column="RV_RESER_NO" property="reserNo" />
+		<result column="IMG_PATH" property="imgPath" />
+		<result column="REVIEW_CONTENT" property="content" />
+		<result column="REVIEW_SCORE" property="score" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_YN" property="reviewYN" />
+	</resultMap>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+</mapper>  

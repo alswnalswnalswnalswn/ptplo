@@ -132,53 +132,53 @@
 	<jsp:include page="../common/menubar.jsp"/>
 	
 	<form action="reviewInsert.do?reserNo=${ reser.reserNo}&hotelNo=${hotel.hotelNo}" method="post" enctype="multipart/form-data">
-    <div id="content">
-		<div id="content_title">
-		   	<div id="left_img">
-	       		<a href="myReser.list?reserNo=${ reser.reserNo}&hotelNo=${ hotel.hotelNo}"><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
-		    </div>
-		    <div id="left_title"><h3>리뷰 작성</h3></div>
+	    <div id="content">
+			<div id="content_title">
+			   	<div id="left_img">
+		       		<a href="myReser.list?reserNo=${ reser.reserNo}&hotelNo=${ hotel.hotelNo}"><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
+			    </div>
+		   	<div id="left_title"><h3>리뷰 작성</h3></div>
 		</div>
-	<div id="content_1">
-	    <div id="hotel-no">
-	        No.${ reser.reserNo}
-	    </div>
-	    <div>
-           <div id="reser_hotel_img"><img src="${ hotel.hotelPath}" alt="" width="220px" height="220px"></div>
-			<input type="hidden" name="reserNo" value="${ reser.reserNo}">
-			<input type="hidden" name="hotelNo" value="${ hotel.hotelNo}">
+		<div id="content_1">
+		    <div id="hotel-no">
+		        No.${ reser.reserNo}
+		    </div>
+		    <div>
+	        	<div id="reser_hotel_img"><img src="${ hotel.hotelPath}" alt="" width="220px" height="220px"></div>
+				<input type="hidden" name="reserNo" value="${ reser.reserNo}">
+				<input type="hidden" name="hotelNo" value="${ hotel.hotelNo}">
 	            <div id="reser_detail">
-                <h3>${ hotel.hotelName}</h3>
-                <p>${ room.roomName}</p>
-                <p>${ reser.people}인</p>
-                <p>${ reser.paymentPrice}원</p>
-                <p>${ reser.checkIn}&nbsp;&nbsp;${ room.checkInTime} : 00 ~ ${ reser.checkOut}&nbsp;&nbsp;${ room.checkOutTime} : 00</p>
-           </div>
+	                <h3>${ hotel.hotelName}</h3>
+	                <p>${ room.roomName}</p>
+	                <p>${ reser.people}인</p>
+	                <p>${ reser.paymentPrice}원</p>
+	                <p>${ reser.checkIn}&nbsp;&nbsp;${ room.checkInTime} : 00 ~ ${ reser.checkOut}&nbsp;&nbsp;${ room.checkOutTime} : 00</p>
+          		</div>
+    		</div>
+	    </div>
+    	<div id="content_2">
+	        <div id="starList">
+	            <span class="star" value="0">☆</span>
+	            <span class="star" value="1">☆</span>
+	            <span class="star" value="2">☆</span>
+	            <span class="star" value="3">☆</span>
+	            <span class="star" value="4">☆</span>
+	        </div>
     	</div>
-    </div>
-    <div id="content_2">
-        <div id="starList">
-            <span class="star" value="0">☆</span>
-            <span class="star" value="1">☆</span>
-            <span class="star" value="2">☆</span>
-            <span class="star" value="3">☆</span>
-            <span class="star" value="4">☆</span>
-        </div>
-    </div>
-	<div id="content_3">
-	    <input type="file" name="upfile" id="file-up">
-	    <button type="button" id="insert-img">사진추가</button>
-	</div>
-            
-    <div id="content_4">
-        <textarea name="reviewContent" id="review-content" cols="70" rows="15" style="resize:none;"></textarea>
-    </div>
-        
-    <div id="footer">
-        <button id="add" type="submit">등록하기</button>
-    </div>
-	<input id="starScore" type="hidden" name="starScore" value="">
-</div>
+			<div id="content_3">
+			    <input type="file" name="upfile" id="file-up">
+			    <button type="button" id="insert-img">사진추가</button>
+			</div>
+		            
+		    <div id="content_4">
+		        <textarea name="reviewContent" id="review-content" cols="70" rows="15" style="resize:none;"></textarea>
+		    </div>
+		        
+		    <div id="footer">
+		        <button id="add" type="submit">등록하기</button>
+		    </div>
+			<input id="starScore" type="hidden" name="starScore" value="">
+		</div>
 </form>    
      <script>
         $(function(){
