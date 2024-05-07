@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="thenolja.tb_reservation.model.vo.Reservation, thenolja.tb_hotel.model.vo.Hotel,
-				thenolja.tb_hotel.model.vo.Room, thenolja.tb_review.model.vo.Review" %>  
-<%
-	Review r = (Review)request.getAttribute("review");
-	Room room = (Room)request.getAttribute("room");
-	Reservation reser = (Reservation)request.getAttribute("reser");
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,27 +132,27 @@
 
 
 <body>
-	<%@ include file="../common/menubar.jsp" %>
-	<form action="<%=contextPath %>/reviewUpdate.do?reserNo=<%=r.getReserNo() %>&hotelNo=<%=r.getHotelNo()%>&roomNo=<%=r.getRoomNo()%>" method="post" enctype="multipart/form-data">
+	<jsp:include page="../common/menubar.jsp"/>
+	<form action="reviewUpdate.do?reserNo=${r.reserNo}&hotelNo=${r.hotelNo}&roomNo=${r.roomNo}" method="post" enctype="multipart/form-data">
     <div id="content">
 		<div id="content_title">
 		   	<div id="left_img">
-	       		<a href="<%= contextPath%>"><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
+	       		<a href=""><img src="https://www.pngarts.com/files/2/Left-Arrow-PNG-Free-Download.png" alt="왼쪽 화살표" width="40px"></a>
 		    </div>
 		    <div id="left_title"><h3>리뷰 작성</h3></div>
 		</div>
 	<div id="content_1">
 	    <div id="hotel-no">
-	        No.<%=r.getReserNo() %>
+	        No.${r.reserNo}
 	    </div>
 	    <div>
-           <div id="reser_hotel_img"><img src="<%=r.getHotelPath() %>" alt="" width="220px" height="220px"></div>
+           <div id="reser_hotel_img"><img src="${r.hotelPath}" alt="" width="220px" height="220px"></div>
 	            <div id="reser_detail">
-                <h3><%=r.getHotelName() %></h3>
-                <p><%=r.getRoomName() %></p>
-                <p><%=room.getMaxPeople() %>인</p>
-                <p><%=r.getPaymentPrice() %>원</p>
-				<p><%=reser.getCheckIn()%>&nbsp;&nbsp;<%=room.getCheckInTime() %> : 00 ~ <%=reser.getCheckOut()%>&nbsp;&nbsp;<%=room.getCheckOutTime() %> : 00</p>
+                <h3>${r.hotelName}</h3>
+                <p>${r.roomName}</p>
+                <p>${room.maxPeople}인</p>
+                <p>${r.paymentPrice}원</p>
+				<p>${reser.checkIn}&nbsp;&nbsp;${room.checkInTime} : 00 ~ ${reser.checkOut}&nbsp;&nbsp;${room.checkOutTime} : 00</p>
                 </div>
     	</div>
     </div>
@@ -174,14 +168,14 @@
 	<div id="content_3">
 	    <input type="file" name="upfile" id="file-up">
 	    <button type="button" id="insert-img">사진추가</button>
-     	<% if(r != null) { %>
-     	<label style="margin-left: 20px;">첨부파일 :&nbsp;&nbsp; <img id="review_img" src="<%= r.getImgPath()%>" width="100px" height="100px"></label>
-     	<input type="hidden" name="fileNo" value="<%=r.getFileNo() %>"/>
-     	<input type="hidden" name="changeName" value="<%=r.getChangeName() %>"/>
-     	<% } %>
+     	<c:if test="${r != null }">
+     	<label style="margin-left: 20px;">첨부파일 :&nbsp;&nbsp; <img id="review_img" src="${r.imgPath}" width="100px" height="100px"></label>
+     	<input type="hidden" name="fileNo" value="${r.fileNo}"/>
+     	<input type="hidden" name="changeName" value="${r.changeName}"/>
+     	</c:if>
 	</div>
     <div id="content_4">
-        <textarea name="reviewContent" id="review-content" cols="70" rows="15" style="resize:none;"><%=r.getContent() %></textarea>
+        <textarea name="reviewContent" id="review-content" cols="70" rows="15" style="resize:none;">${r.reviewContent}</textarea>
     </div>
         
     <div id="footer">
@@ -225,7 +219,7 @@
         		url : 'reviewInsert.do',
         		type : 'post',
         		data : {
-        			reserNo : <%=r.getReserNo()%>,
+        			reserNo : ${r.ReserNo},
         			imgPath : $('#file-up').val(),
         			content : $('#review-content').val(),
         			score : $('.star').val()
