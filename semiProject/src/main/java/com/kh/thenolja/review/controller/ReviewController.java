@@ -80,10 +80,12 @@ public class ReviewController {
 	
 	@PostMapping("reviewUpdate.do")
 	public ModelAndView reviewUpdate(ModelAndView mv, Review review, MultipartFile upfile, HttpSession session, int reserNo) {
+		review.setOriginName(upfile.getOriginalFilename());
+		review.setChangeName(saveFile(upfile, session));
+		review.setImgPath(review.getChangeName());
 		
 		if(reviewService.selectReview(reserNo) != null) {
 			mv.addObject("review", reviewService.reviewUpdate(review)).setViewName("review/reviewList");
-			
 		} else {
 			mv.setViewName("common/errorPage");
 		}
