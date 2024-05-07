@@ -77,4 +77,46 @@ public class ReviewController {
 		return mv;
 		
 	}
+	
+	@PostMapping("reviewUpdate.do")
+	public ModelAndView reviewUpdate(ModelAndView mv, Review review, MultipartFile upfile, HttpSession session, int reserNo) {
+		
+		if(reviewService.selectReview(reserNo) != null) {
+			mv.addObject("review", reviewService.reviewUpdate(review)).setViewName("review/reviewList");
+			
+		} else {
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	@PostMapping("delete.review")
+	public ModelAndView reviewDelete(ModelAndView mv, int reserNo) {
+		
+		if(reviewService.selectReview(reserNo) != null) {
+		    reviewService.reviewDelete(reserNo);
+			mv.addObject("alertMsg", "리뷰가 삭제되었습니다").setViewName("review/reviewList");
+			
+		} else {
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -69,12 +69,57 @@
 	
 	</select>
 	
+	<select id="selectReviewList" resultMap="reviewResultSet" parameterType="_int">
+        SELECT
+        		NICKNAME,
+		        RV_RESER_NO,
+		        IMG_PATH,
+		        REVIEW_CONTENT,
+		        REVIEW_SCORE,
+		        CREATE_DATE,
+                TB_HOTEL.HOTEL_NO,
+                HOTEL_NAME,
+                ROOM_NAME,
+                TB_ROOM.ROOM_NO,
+                ROOM_PRICE,
+                MEM_NO,
+                PAYMENT_PRICE,
+                HOTEL_PATH
+        FROM
+                TB_REVIEW
+        JOIN
+                TB_RESERVATION ON (TB_REVIEW.RV_RESER_NO = TB_RESERVATION.RESER_NO)
+        JOIN
+                TB_MEMBER ON (TB_RESERVATION.RE_MEM_NO = TB_MEMBER.MEM_NO)
+       	JOIN
+                TB_ROOM ON (TB_ROOM.ROOM_NO = TB_RESERVATION.ROOM_NO)
+        JOIN
+                TB_HOTEL ON (TB_HOTEL.HOTEL_NO = TB_ROOM.HOTEL_NO)       
+		 WHERE
+		 		RV_RESER_NO = #{reserNo}
+		   AND
+		   		REVIEW_YN = 'Y'   
+	</select>
 	
+	<update id="reviewUpdate" parameterType="_int">
+		UPDATE 
+				TB_REVIEW
+		   SET		
+				IMG_PATH = #{imgPath},
+				REVIEW_CONTENT = #{reviewContent},
+				REVIEW_SCORE = #{score}
+		 WHERE
+		 		RV_RESER_NO = #{reserNo}
+	</update>
 	
-	
-	
-	
-	
+	<delete id="reviewDelete" parameterType="_int">
+		UPDATE
+				TB_REVIEW
+		   SET
+		   		REVIEW_YN = 'N'
+		 WHERE
+		 		RV_RESER_NO = #{reserNo}
+	</delete>
 	
 	
 	

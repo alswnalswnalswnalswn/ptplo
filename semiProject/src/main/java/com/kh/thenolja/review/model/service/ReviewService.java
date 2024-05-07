@@ -9,6 +9,12 @@ public interface ReviewService {
 	int  reviewInsert(Review review);
 
 	List<Review> selectReviewList(int hotelNo);
+
+	int reviewUpdate(Review review);
+
+	Review selectReview(int reserNo);
+
+	int reviewDelete(int reserNo);
 	
 	
 

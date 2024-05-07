@@ -27,5 +27,20 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> selectReviewList(int hotelNo) {
 		return reviewRepository.selectReviewList(sqlSession, hotelNo);
 	}
+	
+	@Override
+	public Review selectReview(int reserNo) {
+		return reviewRepository.selectReview(sqlSession, reserNo);
+	}
+
+	@Override
+	public int reviewUpdate(Review review) {
+		return reviewRepository.reviewUpdate(sqlSession, review);
+	}
+
+	@Override
+	public int reviewDelete(int reserNo) {
+		return reviewRepository.reviewDelete(sqlSession, reserNo);
+	}
 
 }

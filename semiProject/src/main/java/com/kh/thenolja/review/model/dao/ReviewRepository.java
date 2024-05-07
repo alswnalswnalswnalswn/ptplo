@@ -18,4 +18,16 @@ public class ReviewRepository {
 		return sqlSession.selectList("reviewMapper.selectReviewList", hotelNo);
 	}
 
+	public Review selectReview(SqlSessionTemplate sqlSession, int reserNo) {
+		return sqlSession.selectOne("reviewMapper.selectReview", reserNo);
+	}
+
+	public int reviewUpdate(SqlSessionTemplate sqlSession, Review review) {
+		return sqlSession.update("reviewMapper.reviewUpdate", review);
+	}
+
+	public int reviewDelete(SqlSessionTemplate sqlSession, int reserNo) {
+		return sqlSession.update("reviewMapper.reviewDelete", reserNo);
+	}
+
 }
