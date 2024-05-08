@@ -151,10 +151,10 @@
 						<span id="reviewCC">${ r.reviewContent}</span>
 					</div>
 				</div>
-				<div id="reivew_set">
+				<div id="reivew_set"> 
 					<div id="review_img"><img id="reser_review_img" src="${ r.imgPath }" alt="숙소사진" width="150px" height="150px"></div>
 					<div id="img_btn">
-						<c:if test="${loginUser.memNo == r.memNo}" >
+						<c:if test="${r.memNo eq r.memNo}" >
 						<a href="update.review?reserNo=${ r.reserNo}&hotelNo=${ r.hotelNo}&roomNo=${ r.roomNo}"><button id="updateReview">리뷰 수정</button></a>
 						<a href="delete.review?reserNo=${ r.reserNo}&hotelNo=${ r.hotelNo}">
 						<input id="cancel" type="button" value="X" style="border: 0; background-color: white;"></a>

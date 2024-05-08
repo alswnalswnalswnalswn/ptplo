@@ -49,8 +49,8 @@ public class ReserController {
 	@GetMapping("insert.reser")
 	public ModelAndView insertReser(Reservation reser, ModelAndView mv, HttpSession session, String reMemNo) {
 		
-		reser.setCheckIn("2024-05-01");
-		reser.setCheckOut("2024-05-02");
+		reser.setCheckIn("2024-05-09");
+		reser.setCheckOut("2024-05-10");
 		
 		int memNo = Integer.parseInt(reMemNo);
 		reser.setRoomNo(4);

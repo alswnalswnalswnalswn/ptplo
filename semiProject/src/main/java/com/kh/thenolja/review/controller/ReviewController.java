@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,21 +79,24 @@ public class ReviewController {
 		
 	}
 	
-	@PostMapping("reviewUpdate.do")
+	@GetMapping("update.review")
 	public ModelAndView reviewUpdate(ModelAndView mv, Review review, MultipartFile upfile, HttpSession session, int reserNo) {
-		review.setOriginName(upfile.getOriginalFilename());
-		review.setChangeName(saveFile(upfile, session));
-		review.setImgPath(review.getChangeName());
 		
-		if(reviewService.selectReview(reserNo) != null) {
+		if(!upfile.getOriginalFilename().equals("")) {
+			
+			review.setOriginName(upfile.getOriginalFilename());
+			review.setChangeName(saveFile(upfile, session));
+			review.setImgPath(review.getChangeName());
+		} if(reviewService.selectReview(reserNo) != null) {
 			mv.addObject("review", reviewService.reviewUpdate(review)).setViewName("review/reviewList");
 		} else {
 			mv.setViewName("common/errorPage");
 		}
+
 		return mv;
 	}
 	
-	@PostMapping("delete.review")
+	@GetMapping("delete.review")
 	public ModelAndView reviewDelete(ModelAndView mv, int reserNo) {
 		
 		if(reviewService.selectReview(reserNo) != null) {

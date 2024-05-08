@@ -10,7 +10,15 @@
 		<result column="REVIEW_CONTENT" property="reviewContent" />
 		<result column="REVIEW_SCORE" property="score" />
 		<result column="CREATE_DATE" property="createDate" />
-		<result column="REVIEW_YN" property="reviewYN" />
+		
+		<result column="HOTEL_NO" property="hotelNo" />
+		<result column="HOTEL_NAME" property="hotelName" />
+		<result column="ROOM_NAME" property="roomName" />
+		<result column="ROOM_NO" property="roomNo" />
+		<result column="ROOM_PRICE" property="roomPrice" />
+		<result column="MEM_NO" property="memNo" />
+		<result column="PAYMENT_PRICE" property="paymentPrice" />
+		<result column="HOTEL_PATH" property="hotelPath" />
 	</resultMap>
  
 	<insert id="reviewInsert" parameterType="review">
@@ -69,7 +77,7 @@
 	
 	</select>
 	
-	<select id="selectReviewList" resultMap="reviewResultSet" parameterType="_int">
+	<select id="selectReview" resultMap="reviewResultSet" parameterType="_int">
         SELECT
         		NICKNAME,
 		        RV_RESER_NO,
